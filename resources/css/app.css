@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+#quiz-logo {
+    width: 50px;
+}
+
+#logo-outer{
+    stroke: #ef4444 !important;
+}
+
+#logo-inner{
+    fill: #ef4444 !important;
+}
