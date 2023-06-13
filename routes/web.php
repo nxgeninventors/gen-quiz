@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\QuizCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/category', function () {
+        $categories = QuizCategory::getCategories();
+        return view('category', compact('categories'));
+    })->name('category');
+
+    Route::get('/question', function () {
+        return view('question');
+    })->name('question');
 });
