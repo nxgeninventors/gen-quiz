@@ -35,4 +35,8 @@ Route::middleware([
     Route::get('/question', function () {
         return view('question');
     })->name('question');
+
+    Route::get('/results', function () {
+        return view('results');
+    })->name('results');
 });

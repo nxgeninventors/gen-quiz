@@ -31,6 +31,14 @@ class DatabaseSeeder extends Seeder
             $this->createTeam($user);
         });
 
+        tap(User::create([
+            'name' => 'Krishna',
+            'email' => 'krishna@gmail.com',
+            'password' => Hash::make('password'),
+        ]), function (User $user) {
+            $this->createTeam($user);
+        });
+
         $this->call([
             QuizCategorySeeder::class,
             QuestionTypeSeeder::class,

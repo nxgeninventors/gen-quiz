@@ -17,3 +17,8 @@
 #logo-inner{
     fill: #ef4444 !important;
 }
+
+#confetti {
+    position: fixed;
+    top: 0px;
+}
