@@ -20,6 +20,12 @@ class QuizCategorySeeder extends Seeder
             ["name" => 'Space', 'category_image_path' => 'images/space.svg'],
             ["name" => 'Computer Science', 'category_image_path' => 'images/computer_science.svg'],
         ];
+        $categories = [
+            ["name" => 'English', 'category_image_path' => 'images/geography.svg'],
+            ["name" => 'Business English', 'category_image_path' => 'images/history.svg'],
+            ["name" => 'Tofel', 'category_image_path' => 'images/science.svg'],
+            ["name" => 'Computer Science', 'category_image_path' => 'images/computer_science.svg'],
+        ];
 
         foreach ($categories as $category) {
             QuizCategory::create($category);
