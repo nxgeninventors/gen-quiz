@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'muni@gmail.com',
         //     'password' => bcrypt('password')
         // ]);
+
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Teacher']);
+        Role::create(['name' => 'Student']);
+        Role::create(['name' => 'Guest']);
 
         tap(User::create([
             'name' => 'Muni',
