@@ -22,3 +22,8 @@
     position: fixed;
     top: 0px;
 }
+
+.tox-tinymce {
+    max-width: 300px;
+    margin: 16px;
+}

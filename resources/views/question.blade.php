@@ -32,6 +32,17 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="flex w-full">
+                    <textarea class="w-full" id="editor" name="content"></textarea>
+                </div>
+
+                <div class="flex">
+                    <textarea class="option-editor" id="editor-1" name="content-1"></textarea>
+                    <textarea class="option-editor" id="editor-2" name="content-2"></textarea>
+                    <textarea class="option-editor" id="editor-3" name="content-3"></textarea>
+                    <textarea class="option-editor" id="editor-3" name="content-4"></textarea>
+                </div>
             </div>
         </div>
     </div>

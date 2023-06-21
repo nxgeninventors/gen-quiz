@@ -15,6 +15,7 @@ class QuestionTypeSeeder extends Seeder
     {
         DB::table('question_types')->insert([
             ['name' => 'Multiple Choice'],
+            ['name' => 'Choose best the answer'],
             ['name' => 'True/False'],
             ['name' => 'Fill in the Blanks'],
             ['name' => 'Matching'],

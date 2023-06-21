@@ -18,6 +18,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "confetti-js": "^0.0.18"
+        "confetti-js": "^0.0.18",
+        "tinymce": "^6.5.1"
     }
 }
