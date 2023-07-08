@@ -36,16 +36,7 @@
                 </div>
                 <div class="flex flex-wrap gap-4">
                     @foreach($quizzes as $quiz)
-                    <div class="card w-96 bg-base-100 shadow-xl mb-4">
-                        <figure><img src="{{ $quiz->quiz_image }}" alt="{{ $quiz->quiz_name }}" /></figure>
-                        <div class="card-body">
-                          <h2 class="card-title">{{ $quiz->quiz_name }}</h2>
-                          <p>{{ $quiz->description }}</p>
-                          <div class="card-actions justify-end">
-                            <a href="{{ url('/test').'/'.$quiz->id }}" class="btn btn-primary">Take Test</a>
-                          </div>
-                        </div>
-                    </div>
+                    <x-quiz-card :quiz="$quiz"/>
                     @endforeach
                     {{-- <div class="card w-96 bg-base-100 shadow-xl mb-4">
                         <figure><img src="https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Shoes" /></figure>
