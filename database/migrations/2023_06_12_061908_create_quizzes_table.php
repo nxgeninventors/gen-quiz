@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('quiz_name');
+            $table->string('quiz_image');
+            $table->enum('quiz_type', ['pre-test', 'test']);
             $table->text('description');
             $table->unsignedBigInteger('quiz_category_id')->nullable();
             $table->foreign('quiz_category_id')->references('id')->on('quiz_categories');

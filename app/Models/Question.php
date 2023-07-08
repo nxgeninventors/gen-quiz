@@ -13,7 +13,7 @@ class Question extends Model
 
     public function questionType()
     {
-        return $this->belongsTo(QuestionType::class);
+        return $this->belongsTo(QuestionType::class, 'question_type_id');
     }
 
     public function options()
@@ -29,5 +29,23 @@ class Question extends Model
     public function quizzes()
     {
         return $this->belongsToMany(Quiz::class, 'question_quizzes');
+    }
+
+    public static function getQuestions($quizId)
+    {
+        // return self::whereHas('category', function ($query) use ($quizCategoryId) {
+        //             $query->where('id', $quizCategoryId);
+        //         })
+        //         ->inRandomOrder()
+        //         ->take(25)
+        //         ->get();
+
+        return Question::inRandomOrder()
+                    ->with('options')
+                    ->whereHas('quizzes', function ($query) use ($quizId) {
+                        $query->where('quiz_id', $quizId);
+                    })
+                    ->limit(25)
+                    ->get();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuizController;
+use App\Models\Quiz;
 use App\Models\QuizCategory;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $quizzes = Quiz::where("quiz_type", "pre-test")->get();
+
+    return view('welcome', compact('quizzes'));
 });
 
 Route::middleware([
@@ -24,7 +28,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $categories = QuizCategory::getCategories();
+        return view('dashboard',  compact('categories'));
     })->name('dashboard');
 
     Route::get('/category', function () {
@@ -39,4 +44,13 @@ Route::middleware([
     Route::get('/results', function () {
         return view('results');
     })->name('results');
+
+
+    Route::get('/test/{quiz_id}', function () {
+        return view('dashboard');
+    })->name('test');
+
+
+    Route::get('quizzes/{category_id}/{quiz_id}', [QuizController::class, 'show']);
+    Route::get('quizzes/{category_id}', [QuizController::class, 'show_quizzes']);
 });

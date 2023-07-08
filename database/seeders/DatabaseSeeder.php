@@ -24,10 +24,15 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt('password')
         // ]);
 
-        Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'Teacher']);
-        Role::create(['name' => 'Student']);
-        Role::create(['name' => 'Guest']);
+
+        $roles = [
+            'super-admin', 'teacher',
+            'student', 'guest'
+        ];
+
+        foreach ($roles as $role) {
+            Role::create(['name' => $role]);
+        }
 
         tap(User::create([
             'name' => 'Muni',
