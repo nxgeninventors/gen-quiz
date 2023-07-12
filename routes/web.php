@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Models\Quiz;
 use App\Models\QuizCategory;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +56,11 @@ Route::middleware([
 
     Route::get('quizzes/{category_id}/{quiz_id}', [QuizController::class, 'show']);
     Route::get('quizzes/{category_id}', [QuizController::class, 'show_quizzes']);
+
+    // Route::resource('user', [UserController::class]);
+    // Route::resource('role', [RoleController::class]);
+    // Route::resource('permission', [PermissionController::class]);
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 });

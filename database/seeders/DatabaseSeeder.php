@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]), function (User $user) {
             $this->createTeam($user);
+            $user->assignRole(\SUPER_ADMIN);
         });
 
         tap(User::create([
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]), function (User $user) {
             $this->createTeam($user);
+            $user->assignRole(\SUPER_ADMIN);
         });
 
         $this->call([

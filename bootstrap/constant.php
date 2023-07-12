@@ -4,5 +4,11 @@
  * Application Wide Constant
  */
 
-const PRE_TEST= "pre-test";
-const TEST= "test";
+define("PRE_TEST", "pre-test");
+define("TEST", "test");
+
+define("SUPER_ADMIN", "super-admin");
+define("TEACHER", "teacher");
+define("STUDENT", "student");
+define("GUEST", "guest");
+
