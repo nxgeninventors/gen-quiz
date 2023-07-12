@@ -1,0 +1,88 @@
+$white:    #fff !default;
+$parimary-bg-color: #007bff;
+$parimary-text-color: #fff;
+
+$secondary-bg-color: #6c757d;
+$secondary-text-color: #fff;
+
+$success-bg-color: #28a745;
+$success-text-color: #fff;
+
+$info-bg-color: #17a2b8;
+$info-text-color: #fff;
+
+$warning-bg-color: #ffc107;
+$warning-text-color: #212529;
+
+$danger-bg-color: #dc3545;
+$danger-text-color: #fff;
+
+$light-bg-color: #f8f9fa;
+$light-text-color: #212529;
+
+$dark-bg-color: #343a40;
+$dark-text-color: #fff;
+
+
+
+$facebook-bg: #3b5998;
+$twitter-bg: #1da1f2;
+
+
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+
+
+$base-background-color: #fff;
+$base-text-color: #495057;
+
+$white: #fff;
+$blue:   rgb(88, 103, 221) !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     rgb(253, 57, 122) !default;
+$orange:  #fd7e14 !default;
+$yellow:  rgb(255, 184, 34) !default;
+$green:   rgb(10, 187, 135) !default;
+$teal:    #20c997 !default;
+$cyan:    #16aaff !default;
+$brand: rgb(93, 120, 255) !default;
+
+
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          rgb(40, 42, 60) !default;
+
+// Before notie is imported:
+$notie-color-success: $success;
+$notie-color-warning: $warning;
+$notie-color-error: $danger;
+$notie-color-info: $info;
+$notie-color-neutral: #A0A0A0;
+// See all overwriteable variables in src/notie.scss
+
+// Then import notie: - https://github.com/vitejs/vite/issues/382
+@use 'notie/src/notie.scss';
+
+
+/* After notie styles are applied to DOM: */
+.notie-container {
+    box-shadow: none;
+}

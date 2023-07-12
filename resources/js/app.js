@@ -5,6 +5,7 @@ import focus from '@alpinejs/focus';
 // At the component you want to use confetti
 import ConfettiGenerator from "confetti-js";
 // import { intializeEditor } from './plugins/textEditor';
+import { quiz } from './quiz'
 
 
 
@@ -16,7 +17,7 @@ Alpine.start();
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("addEventListener");
+    
 
     function clear(confetti) {
         confetti.clear();
@@ -48,7 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // intializeEditor("editor-3", {body_class : ""})
     // intializeEditor("editor-4", {body_class : ""})
 
-    
+    const question_options = document.getElementById("question_options");
+    if (question_options) {
+        quiz.init();
+    }
 });
   
 
