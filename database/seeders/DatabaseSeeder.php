@@ -52,7 +52,34 @@ class DatabaseSeeder extends Seeder
             $user->assignRole(\SUPER_ADMIN);
         });
 
+        tap(User::create([
+            'name' => 'Guest',
+            'email' => 'guest@gmail.com',
+            'password' => Hash::make('password'),
+        ]), function (User $user) {
+            $this->createTeam($user);
+            $user->assignRole(\GUEST);
+        });
+
+        tap(User::create([
+            'name' => 'Teacher',
+            'email' => 'teacher@gmail.com',
+            'password' => Hash::make('password'),
+        ]), function (User $user) {
+            $this->createTeam($user);
+            $user->assignRole(\TEACHER);
+        });
+        tap(User::create([
+            'name' => 'Student',
+            'email' => 'student@gmail.com',
+            'password' => Hash::make('password'),
+        ]), function (User $user) {
+            $this->createTeam($user);
+            $user->assignRole(\STUDENT);
+        });
+
         $this->call([
+            PermissionSeeder::class,
             QuizCategorySeeder::class,
             QuestionTypeSeeder::class,
             SampleQuizSeeder::class,
