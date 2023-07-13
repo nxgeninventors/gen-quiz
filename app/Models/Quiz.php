@@ -21,6 +21,12 @@ class Quiz extends Model
         return $this->belongsTo(QuizCategory::class, 'quiz_category_id');
     }
 
+    // Test.php model
+    public function students()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 
     public static function getQuizzes($quizCategoryId, $user)
     {
@@ -38,6 +44,15 @@ class Quiz extends Model
                 ->whereHas('category', function ($query) use ($quizCategoryId) {
                     $query->where('id', $quizCategoryId);
                 })
+                ->get();
+    }
+
+
+    public static function getTests()
+    {
+        return self::with('category')
+                ->select('id', 'quiz_name')
+                ->where('quiz_type', TEST)
                 ->get();
     }
 

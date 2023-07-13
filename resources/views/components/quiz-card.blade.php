@@ -1,7 +1,12 @@
 @props(['quiz'])
 
 <div class="card w-96 bg-base-100 shadow-xl mb-4">
-    <figure><img src="{{ asset('storage/quiz/'.$quiz->quiz_image)  }}" alt="{{ $quiz->quiz_name }}" /></figure>
+    @if (Str::contains($quiz->quiz_image, ['http://', 'https://']))
+        <figure><img src="{{ $quiz->quiz_image  }}" alt="{{ $quiz->quiz_name }}" /></figure>
+    @else
+        <figure><img src="{{ asset('storage/quiz/'.$quiz->quiz_image)  }}" alt="{{ $quiz->quiz_name }}" /></figure> 
+    @endif
+    
     <div class="card-body">
         <h2 class="card-title">{{ $quiz->quiz_name }}</h2>
         <div class="badge badge-accent badge-outline">{{ $quiz->quiz_type }}</div>

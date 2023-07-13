@@ -49,8 +49,7 @@ Route::middleware([
     Route::get('test/{category_id}', [QuizController::class, 'show_quizzes']);
 
     // Assign Test 
-    Route::get('assign-test/{user_id}', [AssignTestController::class, 'index'])->name('assign-test');
-
+    Route::resource('assign-test', AssignTestController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

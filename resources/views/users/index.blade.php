@@ -51,10 +51,13 @@
                                     </a>
                                     @endcan
 
-                                    @can('user assign-test')
-                                    <a href="{{route('assign-test', $user->id)}}" class="inline-flex items-center px-4 py-2 mr-4 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                    @can('user assign-test') 
+                                    @if ($user->hasRole(STUDENT))
+                                    <a href="{{route('assign-test.edit', $user->id)}}" class="inline-flex items-center px-4 py-2 mr-4 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
                                         {{ __('Assign Test') }}
                                     </a>
+                                    @endif
+                                    
                                     @endcan
 
                                     @can('user delete')

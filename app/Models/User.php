@@ -61,4 +61,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Student.php model
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class, 'student_quizzes')->withTimestamps();
+    }
 }

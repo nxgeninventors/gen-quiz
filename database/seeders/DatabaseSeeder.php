@@ -91,6 +91,10 @@ class DatabaseSeeder extends Seeder
         $guest_role->givePermissionTo('quiz show_quizzes');
         $guest_role->givePermissionTo('quiz start');
         // $guest_role->givePermissionTo('quiz list');
+
+        $student_role = Role::findByName(STUDENT);
+        $student_role->givePermissionTo('quiz show_quizzes');
+        $student_role->givePermissionTo('quiz start');
     }
 
     /**
