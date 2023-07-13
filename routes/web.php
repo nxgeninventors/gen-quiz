@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RoleController;
@@ -30,36 +31,22 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        $categories = QuizCategory::getCategories();
-        return view('dashboard',  compact('categories'));
-    })->name('dashboard');
+    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/category', [DashboardController::class, 'category'])->name('category');
+    // Route::get('/question', function () {
+    //     return view('question');
+    // })->name('question');
 
-    Route::get('/category', function () {
-        $categories = QuizCategory::getCategories();
-        return view('category', compact('categories'));
-    })->name('category');
+    // Route::get('/results', function () {
+    //     return view('results');
+    // })->name('results');
 
-    Route::get('/question', function () {
-        return view('question');
-    })->name('question');
+    Route::resource('tests', QuizController::class);
 
-    Route::get('/results', function () {
-        return view('results');
-    })->name('results');
+    Route::get('test/{category_id}/{quiz_id}', [QuizController::class, 'start']);
+    Route::get('test/{category_id}', [QuizController::class, 'show_quizzes']);
 
-
-    Route::get('/test/{quiz_id}', function () {
-        return view('dashboard');
-    })->name('test');
-
-
-    Route::get('quizzes/{category_id}/{quiz_id}', [QuizController::class, 'show']);
-    Route::get('quizzes/{category_id}', [QuizController::class, 'show_quizzes']);
-
-    // Route::resource('user', [UserController::class]);
-    // Route::resource('role', [RoleController::class]);
-    // Route::resource('permission', [PermissionController::class]);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

@@ -1,4 +1,4 @@
-import notie from "./notification/notie";
+import notie from "../notification/notie";
 
 export const quiz = (function() {
     function init () {

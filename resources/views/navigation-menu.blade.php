@@ -12,18 +12,29 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @canany(['permission list'])
                     <x-nav-link href="{{ url('permissions') }}" :active="request()->routeIs('permissions')">
                         {{ __('Permissions') }}
                     </x-nav-link>
+                    @endcanany
+
+                    @canany(['role list'])
                     <x-nav-link href="{{ url('roles') }}" :active="request()->routeIs('roles')">
                         {{ __('Roles') }}
                     </x-nav-link>
+                    @endcanany
+
+                    @canany(['user list'])
                     <x-nav-link href="{{ url('users') }}" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    @endcanany
+
                 </div>
             </div>
 

@@ -38,36 +38,7 @@
                     @foreach($quizzes as $quiz)
                     <x-quiz-card :quiz="$quiz"/>
                     @endforeach
-                    {{-- <div class="card w-96 bg-base-100 shadow-xl mb-4">
-                        <figure><img src="https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Shoes" /></figure>
-                        <div class="card-body">
-                          <h2 class="card-title">Shoes!</h2>
-                          <p>If a dog chews shoes whose shoes does he choose?</p>
-                          <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Take Test</button>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="card w-96 bg-base-100 shadow-xl mb-3">
-                        <figure><img src="https://images.unsplash.com/photo-1565022536102-f7645c84354a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Shoes" /></figure>
-                        <div class="card-body">
-                          <h2 class="card-title">Shoes!</h2>
-                          <p>If a dog chews shoes whose shoes does he choose?</p>
-                          <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Take Test</button>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="card w-96 bg-base-100 shadow-xl mb-3">
-                        <figure><img src="https://images.unsplash.com/reserve/uZYSV4nuQeyq64azfVIn_15130980706_64134efc6e_o.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Shoes" /></figure>
-                        <div class="card-body">
-                          <h2 class="card-title">Shoes!</h2>
-                          <p>If a dog chews shoes whose shoes does he choose?</p>
-                          <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Take Test</button>
-                          </div>
-                        </div>
-                    </div> --}}
+                    
                 </div>  
             </div>
         </div>

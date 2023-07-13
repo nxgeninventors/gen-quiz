@@ -10,7 +10,7 @@
 
     <div class="w-full py-2 bg-white overflow-hidden">
 
-        <form method="POST" action="{{ route('role.store') }}">
+        <form method="POST" action="{{ route('roles.store') }}">
         @csrf
 
             <div class="py-2">

@@ -34,6 +34,13 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => $role]);
         }
 
+        $this->call([
+            PermissionSeeder::class,
+            QuizCategorySeeder::class,
+            QuestionTypeSeeder::class,
+            SampleQuizSeeder::class,
+        ]);
+
         tap(User::create([
             'name' => 'Muni',
             'email' => 'muni@gmail.com',
@@ -78,12 +85,12 @@ class DatabaseSeeder extends Seeder
             $user->assignRole(\STUDENT);
         });
 
-        $this->call([
-            PermissionSeeder::class,
-            QuizCategorySeeder::class,
-            QuestionTypeSeeder::class,
-            SampleQuizSeeder::class,
-        ]);
+
+        $guest_role = Role::findByName(GUEST);
+
+        $guest_role->givePermissionTo('quiz show_quizzes');
+        $guest_role->givePermissionTo('quiz start');
+        // $guest_role->givePermissionTo('quiz list');
     }
 
     /**

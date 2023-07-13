@@ -31,6 +31,13 @@ class PermissionSeeder extends Seeder
             'user create',
             'user edit',
             'user delete',
+
+            'quiz list',
+            'quiz create',
+            'quiz edit',
+            'quiz delete',
+            'quiz show_quizzes',
+            'quiz start',
         ];
 
 

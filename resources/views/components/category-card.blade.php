@@ -1,7 +1,7 @@
 <div
     class="bg-white dark:bg-gray-800 shadow-lg dark:shadow-none rounded-2xl h-80 w-72 m-10 hover:shadow-xl dark:hover:shadow-dark"
 >
-    <a href="{{ url('quizzes').'/'.$category_id }}">
+    <a href="{{ url('test').'/'.$category_id }}">
         <div class="flex justify-center pt-12">
             <img
                 src={{ $category_image_path }}
