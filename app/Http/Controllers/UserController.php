@@ -13,6 +13,7 @@ use Illuminate\Validation\Validator;
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Ramsey\Uuid\Type\Integer;
 
 class UserController extends Controller
 {
@@ -124,6 +125,7 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('message', __('User updated successfully.'));
     }
+
 
     /**
      * Remove the specified resource from storage.

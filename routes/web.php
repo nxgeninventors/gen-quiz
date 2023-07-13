@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\QuizController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Models\Quiz;
 use App\Models\QuizCategory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AssignTestController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::middleware([
 
     Route::get('test/{category_id}/{quiz_id}', [QuizController::class, 'start']);
     Route::get('test/{category_id}', [QuizController::class, 'show_quizzes']);
+
+    // Assign Test 
+    Route::get('assign-test/{user_id}', [AssignTestController::class, 'index'])->name('assign-test');
 
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
