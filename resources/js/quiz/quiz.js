@@ -1,7 +1,8 @@
 import notie from "../notification/notie";
 
 export const quiz = (function() {
-    function init () {
+
+    function initalizeQuestions() {
         let currentQuestionIndex = 0; // Current question index
         let selectedAnswers = []; // Array to store selected answers
 
@@ -116,6 +117,61 @@ export const quiz = (function() {
             }
             loadQuestion();
         });
+    }
+
+    function warnUserOnReload () {
+        try {
+            window.addEventListener('beforeunload', function(event) {
+                event.preventDefault();
+                event.returnValue = 'Are you sure you want to leave this page?';
+            });
+        } catch (error) {
+            
+        }
+        
+    }
+
+    function initializeTimer() {
+        const quiz = window.quiz;
+        const quizMinutes = document.getElementById('quiz_minutes');
+        const quizSeconds = document.getElementById('quiz_seconds');
+        if (typeof quiz != 'undefined' && typeof quiz.timeout != 'undefined') {
+            console.log(quiz.timeout)
+            let minutes = Number(quiz.timeout);
+            let seconds = 0;
+
+            let timer = setInterval(updateTimer, 1000);
+
+            function updateTimer() {
+                if (seconds > 0) {
+                    seconds--;
+                } else if (minutes > 0) {
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    clearInterval(timer);
+                    // submitQuizForm();
+                }
+                quizMinutes?.style.setProperty('--value', minutes)
+                quizSeconds?.style.setProperty('--value', seconds)
+            }
+
+        }
+    }
+
+    // let counter = 10
+    // setInterval(() => {
+    //         if(counter>0){
+    //             counter--
+    //         }
+    //     document.getElementById('counterElement').style.setProperty('--value', counter)
+    // }, 1000)
+
+
+    function init () {
+        initalizeQuestions();
+        warnUserOnReload();
+        initializeTimer();
     }
 
     return {

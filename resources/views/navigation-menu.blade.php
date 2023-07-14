@@ -35,6 +35,12 @@
                     </x-nav-link>
                     @endcanany
 
+                    @canany(['quiz list'])
+                    <x-nav-link href="{{ url('users') }}" :active="request()->routeIs('users')">
+                        {{ __('Tests') }}
+                    </x-nav-link>
+                    @endcanany
+
                 </div>
             </div>
 
@@ -166,19 +172,36 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            @canany(['permission list'])
             <x-responsive-nav-link href="{{ url('permissions') }}" :active="request()->routeIs('permissions')">
                 {{ __('Permissions') }}
             </x-responsive-nav-link>
+            @endcanany
+
+
+            @canany(['role list'])
             <x-responsive-nav-link href="{{ url('roles') }}" :active="request()->routeIs('roles')">
                 {{ __('Roles') }}
             </x-responsive-nav-link>
+            @endcanany
+
+            @canany(['user list'])
             <x-responsive-nav-link href="{{ url('users') }}" :active="request()->routeIs('users')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
+            @endcanany
+
+            @canany(['quiz list'])
+            <x-responsive-nav-link href="{{ url('tests') }}" :active="request()->routeIs('users')">
+                {{ __('Tests') }}
+            </x-responsive-nav-link>
+            @endcanany 
+
         </div>
 
         <!-- Responsive Settings Options -->

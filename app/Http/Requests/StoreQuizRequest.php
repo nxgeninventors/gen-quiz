@@ -23,6 +23,7 @@ class StoreQuizRequest extends FormRequest
     {
         return [
             'quiz_name' => 'required|string',
+            'timeout' => 'nullable|numeric',
             'quiz_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'quiz_type' => 'required|in:pre-test,test',
             'description' => 'required|string',

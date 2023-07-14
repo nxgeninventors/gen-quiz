@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('quiz_name');
             $table->string('quiz_image');
             $table->enum('quiz_type', ['pre-test', 'test']);
+            $table->integer('timeout')->nullable();
             $table->text('description');
             $table->unsignedBigInteger('quiz_category_id')->nullable();
             $table->foreign('quiz_category_id')->references('id')->on('quiz_categories');

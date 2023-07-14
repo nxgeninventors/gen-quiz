@@ -8,14 +8,22 @@
         </h2>
     </x-slot>
     <script>
-        var questions = @json($questions);
+        window.questions = @json($questions);
+        window.quiz = @json($quiz);
     </script>
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg ">
+                <div class="flex justify-center mt-5">
+                    <span class="countdown font-mono text-6xl">
+                        <span id="quiz_minutes" style="--value:0;"></span>:
+                        <span id="quiz_seconds" style="--value:0;"></span>
+                    </span>
+                </div>
+                
                 <div id="question-container">
-                    <h1 id="question" class="text-3xl font-sans font-bold text-gray-800 dark:text-gray-300 text-center mt-32 md:mt-48 lg:mt-64">
+                    <h1 id="question" class="text-3xl font-sans font-bold text-gray-800 dark:text-gray-300 text-center mt-32 md:mt-32 lg:mt-32">
                     </h1>
                     <div class="flex justify-center mt-16 mb-16">
                         <div class="bg-gray-50 dark:bg-gray-800 shadow-lg dark:shadow-dark rounded-2xl min-w-80 w-3/4">

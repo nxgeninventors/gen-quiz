@@ -11,6 +11,7 @@ window.notie  = notie;
 // import { intializeEditor } from './plugins/textEditor';
 import { quiz } from './quiz/quiz'
 import { QuizCreateCtrl } from './quiz/create';
+import { DisableCtrl } from './helpers/disable';
 
 window.confirmDelete = function(event, formId) {
     console.log(event);
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (create_quiz) {
         QuizCreateCtrl().init();
     }
+
+    DisableCtrl().init()
 });
   
 

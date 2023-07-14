@@ -24,6 +24,23 @@
             </div>
 
             <div class="py-2">
+                <x-admin.form.label for="timeout" class="{{$errors->has('timeout') ? 'text-red-400' : ''}}">{{ __('Timeout (minutes)') }} <sub></sub></x-admin.form.label>
+
+                <x-admin.form.input id="timeout" class="{{$errors->has('timeout') ? 'border-red-400' : ''}}"
+                                    type="number"
+                                    name="timeout"
+                                    value="{{ old('timeout', $quiz->timeout) }}"
+                                    />
+
+                <div class="alert mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm">
+                        Timeout: This represents the duration in which you need to complete the quiz. If the specified time elapses, the quiz will be automatically submitted. Please make sure to answer all the questions within the given time limit."
+                    </span>
+                </div>
+            </div>
+
+            <div class="py-2">
                 <x-admin.form.label for="quiz_image" class="{{$errors->has('quiz_image') ? 'text-red-400' : ''}}">{{ __('Test image') }}</x-admin.form.label>
 
                 <x-admin.form.input id="quiz_image" class="{{$errors->has('quiz_image') ? 'border-red-400' : ''}}"
@@ -34,8 +51,13 @@
 
                 <div id="imagePreviewContainer">
                     @if ($quiz->quiz_image)
+                        @if (Str::contains($quiz->quiz_image, ['http://', 'https://']))
+                        <img src="{{ $quiz->quiz_image }}">
+                        @else
                         <img src="{{ asset('storage/quiz/'.$quiz->quiz_image)  }}">
+                        @endif
                     @endif
+                    
                 </div>
             </div>
 

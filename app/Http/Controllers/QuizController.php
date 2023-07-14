@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\Question;
+use App\Models\QuizResult;
 use App\Models\QuizCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuizRequest;
@@ -105,16 +106,40 @@ class QuizController extends Controller
      */
     public function start($category_id, $quiz_id)
     {
+        $quiz = Quiz::findOrFail($quiz_id);
         $questions = Question::getQuestions($quiz_id);
-        return view('quizzes.start', compact('questions'));
+        $user = auth()->user();
+
+        ## Guest
+        if (!$user->hasRole([TEACHER, SUPER_ADMIN, STUDENT])) {
+            $count = QuizResult::where('user_id', $user->id)
+                    ->where('quiz_id', $quiz_id)
+                    ->whereNotNull('answers')
+                    ->count();
+
+
+            if ($count) {
+                return redirect()->route('dashboard')
+                        ->with('error', __('To access additional tests, kindly upgrade your subscription as you have already used your complimentary tests..'));
+            }
+        }
+
+
+        $quizResult = QuizResult::create([
+            'user_id' => $user->id,
+            'quiz_id' => $quiz_id,
+            'questions' => json_encode($questions)
+        ]);
+
+        return view('quizzes.start', compact('questions', 'quizResult', 'quiz'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Quiz $quiz)
+    public function edit(int $id)
     {
-
+        $quiz = Quiz::findOrFail($id);
         $quiz_types = $this->quiz_types;
         $quizCategories = QuizCategory::getCategories();
         
@@ -124,9 +149,11 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateQuizRequest $request, Quiz $quiz)
+    public function update(UpdateQuizRequest $request, int $id)
     {
+        $quiz = Quiz::findOrFail($id);
         $data = $request->all();
+    
         if ($request->hasFile('quiz_image')) {
             $data['quiz_image'] = $this->upload_image($request);
         }
