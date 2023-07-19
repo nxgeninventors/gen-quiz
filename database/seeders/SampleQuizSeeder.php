@@ -309,9 +309,9 @@ class SampleQuizSeeder extends Seeder
             DB::table('question_options')->insert($seedData);
 
             $quizzes = <<<CSV
-            "id","quiz_name","quiz_image","quiz_type","description","quiz_category_id","created_at","updated_at"
-            1,Pre-test,https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80,pre-test,This is prelevel test to identify the level of knowledge of student,1,,
-            2,English- test1,https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80,test,Level -1,1,,
+            "id","quiz_name", "timeout","quiz_image","quiz_type","description","quiz_category_id","created_at","updated_at"
+            1,Pre-test, 30,https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80,pre-test,This is prelevel test to identify the level of knowledge of student,1,,
+            2,English- test1, 30,https://images.unsplash.com/photo-1451226428352-cf66bf8a0317?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80,test,Level -1,1,,
             CSV;
 
             $rows = explode("\n", $quizzes);

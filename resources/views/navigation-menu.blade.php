@@ -36,7 +36,7 @@
                     @endcanany
 
                     @canany(['quiz list'])
-                    <x-nav-link href="{{ url('users') }}" :active="request()->routeIs('users')">
+                    <x-nav-link href="{{ url('tests') }}" :active="request()->routeIs('users')">
                         {{ __('Tests') }}
                     </x-nav-link>
                     @endcanany
