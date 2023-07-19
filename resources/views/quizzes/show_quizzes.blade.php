@@ -4,7 +4,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Quiz') }}
+            {{ __('Test') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -18,7 +18,7 @@
             @if((count($quizzes)) === 0)
             <div class="flex justify-center items-center">
                 <h2 class="font-semibold text-xl text-red-600 dark:text-gray-200 leading-tight">
-                    No quiz found for this category.
+                    No test found for this category.
                 </h2>
             </div>
             @endif
