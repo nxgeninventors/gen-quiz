@@ -1,6 +1,6 @@
 <x-admin.wrapper>
     <x-slot name="title">
-        {{ __('Quizzes') }}
+        {{ __('Tests') }}
     </x-slot>
 
     @can('quiz create')

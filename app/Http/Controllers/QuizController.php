@@ -104,19 +104,42 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      */
-    public function start($category_id, $quiz_id)
+    public function start($category_id, $quiz_id, $quiz_result_id = null)
     {
         $quiz = Quiz::findOrFail($quiz_id);
-        $questions = Question::getQuestions($quiz_id);
         $user = auth()->user();
+        $guest_role = !$user->hasRole([TEACHER, SUPER_ADMIN, STUDENT]);
 
-        ## Guest
-        if (!$user->hasRole([TEACHER, SUPER_ADMIN, STUDENT])) {
+
+        if (!empty($quiz_result_id)) {
+            $quizResult = QuizResult::with('quiz')->where('user_id', $user->id)
+                    ->where('id', $quiz_result_id)
+                    ->whereNull('answers')
+                    ->first();
+
+            $questions = json_decode($quizResult->questions);
+            return view('quizzes.start', compact('questions', 'quizResult', 'quiz'));
+        }
+
+        $force = request()->has('force');
+        $quizResults = QuizResult::with('quiz')->where('user_id', $user->id)
+                    ->where('quiz_id', $quiz_id)
+                    ->whereNull('answers')
+                    ->get();
+        
+        if (
+            ($quizResults->count() && $guest_role) || 
+            ($quizResults->count() && !$force)
+        ) {
+            return view('quizzes.incomplete-quiz', compact('quizResults', 'category_id', 'quiz_id', 'guest_role', 'force'));
+        }
+
+        // guest not allowed to attempt more than one pre test
+        if ($guest_role) {
             $count = QuizResult::where('user_id', $user->id)
                     ->where('quiz_id', $quiz_id)
                     ->whereNotNull('answers')
                     ->count();
-
 
             if ($count) {
                 return redirect()->route('dashboard')
@@ -125,6 +148,7 @@ class QuizController extends Controller
         }
 
 
+        $questions = Question::getQuestions($quiz_id);
         $quizResult = QuizResult::create([
             'user_id' => $user->id,
             'quiz_id' => $quiz_id,

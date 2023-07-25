@@ -12,4 +12,15 @@ class QuizResult extends Model
     protected $table = 'quiz_results';
 
     protected $fillable = ['user_id', 'quiz_id', 'questions'];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class, 'quiz_id');
+    }
 }

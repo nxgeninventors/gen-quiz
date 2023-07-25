@@ -46,6 +46,7 @@ Route::middleware([
     Route::resource('tests', QuizController::class);
 
     Route::get('test/{category_id}/{quiz_id}', [QuizController::class, 'start']);
+    Route::get('test/{category_id}/{quiz_id}/{quiz_result_id?}', [QuizController::class, 'start']);
     Route::get('test/{category_id}', [QuizController::class, 'show_quizzes']);
 
     // Assign Test 
