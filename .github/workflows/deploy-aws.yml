@@ -60,6 +60,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             cd /var/www/nxgeninventors.com/quiz && 
             php artisan storage:link &&
+            touch laravel &&
             php artisan migrate:fresh --seed &&
             sudo chown -R www-data:www-data ./ &&
             sudo chmod -R 777 storage
