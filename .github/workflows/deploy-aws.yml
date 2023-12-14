@@ -1,4 +1,4 @@
-name: Simba
+name: Deploy
 
 on:
   push:
