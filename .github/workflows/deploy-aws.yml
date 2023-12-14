@@ -1,4 +1,4 @@
-name: Simba
+name: Deploy
 
 on:
   push:
@@ -44,21 +44,21 @@ jobs:
       env:
           PRIVATE_KEY: ${{ secrets.AWS_PEM_KEY  }}
           HOSTNAME : ${{ secrets.HOSTNAME  }}
-          USER_NAME : ${{ secrets.USER_NAME  }}
+          USERNAME : ${{ secrets.USERNAME  }}
           ENV : ${{ secrets.ENV  }}
       run: |
         echo "$ENV" > .env
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
 
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            cd /var/www/nxgeninventors.com/quiz && 
+        ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOSTNAME} '
+            cd /var/www/ && 
             sudo chown -R ubuntu:ubuntu ./
         '
 
-        rsync -r --exclude 'node_modules' --exclude 'storage' --exclude '.git/' --delete-after -e "ssh -o StrictHostKeyChecking=no -i private_key" . ${USER_NAME}@${HOSTNAME}:/var/www/nxgeninventors.com/quiz/
+        rsync -r --exclude 'node_modules' --exclude 'storage' --exclude '.git/' --delete-after -e "ssh -o StrictHostKeyChecking=no -i private_key" . ${USERNAME}@${HOSTNAME}:/var/www/
 
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            cd /var/www/nxgeninventors.com/quiz && 
+        ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOSTNAME} '
+            cd /var/www/ && 
             php artisan storage:link &&
             touch laravel &&
             php artisan migrate:fresh --seed &&
